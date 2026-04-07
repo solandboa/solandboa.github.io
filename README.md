@@ -1,11 +1,11 @@
-# 👋 김준호 | Software Developer
+# 김준호 | Lead Software Developer
 
 웹 서비스, 관리자 시스템, 자동화, AI 응용프로그램까지  
 기획부터 개발·운영까지 수행하는 개발자입니다.
 
 ---
 
-## 🚀 About Me
+## About Me
 
 - Python / FastAPI / React 기반 웹 서비스 개발
 - 관리자 시스템 및 업무 자동화 구축
@@ -74,4 +74,4 @@
 
 ## 🌐 Portfolio Site
 
-👉 https://your-id.github.io/portfolio/
+👉 https://solandboa.github.io
