@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>김준호 | Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121933;
+      --panel-2: #1a2344;
+      --text: #e9eefc;
+      --muted: #aab5d6;
+      --line: rgba(255,255,255,0.08);
+      --accent: #6ea8fe;
+      --accent-2: #7ef0c2;
+      --max: 1120px;
+      --radius: 20px;
+      --shadow: 0 16px 40px rgba(0,0,0,0.28);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+      background: linear-gradient(180deg, #0b1020 0%, #0d1328 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    .section { padding: 72px 0; }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+    }
+    .section-desc {
+      color: var(--muted);
+      margin: 0 0 28px;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(14px);
+      background: rgba(11,16,32,0.72);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .menu {
+      display: flex;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .hero {
+      padding: 88px 0 56px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-card,
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 38px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(110,168,254,0.12);
+      color: #bcd3ff;
+      border: 1px solid rgba(110,168,254,0.18);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+      margin: 0 0 16px;
+    }
+
+    .lead {
+      font-size: 1.04rem;
+      color: var(--muted);
+      margin: 0 0 28px;
+      max-width: 720px;
+    }
+
+    .cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #88b8ff);
+      color: #061022;
+      border: none;
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .quick {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 18px;
+    }
+
+    .stat {
+      padding: 24px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 2rem;
+      line-height: 1;
+      margin-bottom: 8px;
+      color: white;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      color: #dbe4ff;
+      font-size: 0.94rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .skill-card,
+    .project-card,
+    .timeline-item,
+    .contact-card {
+      padding: 24px;
+    }
+
+    .card-title {
+      margin: 0 0 10px;
+      font-size: 1.12rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .muted { color: var(--muted); }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0;
+    }
+
+    .tag {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      color: #cfe1ff;
+      background: rgba(110,168,254,0.1);
+      border: 1px solid rgba(110,168,254,0.16);
+    }
+
+    .project-card ul,
+    .timeline-item ul {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 4px;
+      background: linear-gradient(180deg, var(--accent), var(--accent-2));
+      border-radius: 4px;
+    }
+
+    .timeline-year {
+      display: inline-block;
+      margin-bottom: 8px;
+      font-weight: 800;
+      color: #bcd3ff;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .footer {
+      padding: 28px 0 40px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .grid-3,
+      .project-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .menu { display: none; }
+      .hero-card { padding: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="wrap nav">
+      <a href="#top" class="brand">김준호 · Portfolio</a>
+      <nav class="menu">
+        <a href="#about">소개</a>
+        <a href="#skills">기술</a>
+        <a href="#projects">프로젝트</a>
+        <a href="#timeline">경력</a>
+        <a href="#contact">연락처</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-card">
+          <div class="badge">Python · FastAPI · React · PHP · C++ · AI</div>
+          <h1>웹 서비스, 관리자 시스템, 자동화, AI 응용프로그램까지 개발하는 소프트웨어 개발자</h1>
+          <p class="lead">
+            2012년부터 다양한 산업 분야에서 웹 서비스, 관리자 시스템, Windows 응용프로그램,
+            비전 검사 소프트웨어, AI 모델링과 운영 자동화까지 폭넓게 수행해 왔습니다.
+            최근에는 FastAPI, React, MySQL, Docker 기반 서비스 구축과 운영 자동화에 집중하고 있습니다.
+          </p>
+          <div class="cta">
+            <a class="btn btn-primary" href="#projects">대표 프로젝트 보기</a>
+            <a class="btn btn-secondary" href="mailto:solandboa.dev@gmail.com">이메일 문의</a>
+          </div>
+          <div class="quick">
+            <div><strong>이메일</strong><br />solandboa.dev@gmail.com</div>
+            <div><strong>GitHub</strong><br />github.com/your-id</div>
+            <div><strong>주요 분야</strong><br />웹 · 자동화 · AI · Windows App</div>
+            <div><strong>근무 형태</strong><br />Freelance / Project Based</div>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="card stat">
+            <strong>13+</strong>
+            <div class="muted">주요 프로젝트 이력</div>
+          </div>
+          <div class="card stat">
+            <strong>2012 ~ 2026</strong>
+            <div class="muted">웹, AI, 비전, 윈도우 응용 개발 경험</div>
+          </div>
+          <div class="card stat">
+            <strong>End-to-End</strong>
+            <div class="muted">기획, 개발, 운영, 유지보수까지 수행</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="wrap">
+        <h2 class="section-title">소개</h2>
+        <p class="section-desc">
+          서비스 화면 개발부터 백엔드 API, 관리자 페이지, 서버 운영, 자동화, 산업용 프로그램 개발까지 수행합니다.
+          업무 범위가 넓어 단순 기능 개발보다 실제 운영에 필요한 전체 흐름을 고려한 구현을 지향합니다.
+        </p>
+        <div class="grid-3">
+          <article class="card skill-card">
+            <h3 class="card-title">웹 서비스 개발</h3>
+            <p class="muted">FastAPI, React, PHP, Jinja2 기반의 홈페이지와 관리자 시스템 구축</p>
+          </article>
+          <article class="card skill-card">
+            <h3 class="card-title">자동화 및 운영</h3>
+            <p class="muted">알림 연동, 스케줄링, 서비스 재시작, DB 백업, 운영 편의 기능 자동화</p>
+          </article>
+          <article class="card skill-card">
+            <h3 class="card-title">AI 및 Windows App</h3>
+            <p class="muted">TensorFlow/PyTorch 모델링, 추론 라이브러리, C++/MFC/Unity 응용프로그램 개발</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="wrap">
+        <h2 class="section-title">기술 스택</h2>
+        <p class="section-desc">프로젝트 경험 기준으로 정리한 핵심 기술입니다.</p>
+        <div class="card skill-card">
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">FastAPI</span>
+            <span class="chip">React</span>
+            <span class="chip">Jinja2</span>
+            <span class="chip">PHP</span>
+            <span class="chip">MySQL</span>
+            <span class="chip">Docker</span>
+            <span class="chip">Telegram Bot</span>
+            <span class="chip">OpenAI API</span>
+            <span class="chip">TensorFlow</span>
+            <span class="chip">PyTorch</span>
+            <span class="chip">C++</span>
+            <span class="chip">MFC</span>
+            <span class="chip">Unity</span>
+            <span class="chip">Visual Studio</span>
+            <span class="chip">Linux</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="wrap">
+        <h2 class="section-title">대표 프로젝트</h2>
+        <p class="section-desc">최근 프로젝트와 설명 가능한 프로젝트 위주로 정리했습니다.</p>
+
+        <div class="project-grid">
+          <article class="card project-card">
+            <h3 class="card-title">통신/모바일 소개 페이지 제작</h3>
+            <div class="muted">2026.03 ~</div>
+            <div class="project-meta">
+              <span class="tag">FastAPI</span>
+              <span class="tag">React</span>
+              <span class="tag">MySQL</span>
+            </div>
+            <p class="muted">통신·모바일 업종용 회사 소개 페이지 제작과 운영 기능 구성</p>
+            <ul>
+              <li>웹 메인/상품 페이지 제작</li>
+              <li>특정 시간 서비스 재시작 기능</li>
+              <li>DB 백업 기능 구성</li>
+            </ul>
+          </article>
+
+          <article class="card project-card">
+            <h3 class="card-title">통신/모바일 관리 프로그램 제작</h3>
+            <div class="muted">2025.09 ~ 2026.02</div>
+            <div class="project-meta">
+              <span class="tag">Python</span>
+              <span class="tag">Jinja2</span>
+              <span class="tag">MySQL</span>
+            </div>
+            <p class="muted">업무 관리용 웹 프로그램과 API 연동 기반 관리자 시스템 구축</p>
+            <ul>
+              <li>웹 관리자 프로그램 개발</li>
+              <li>DB 수집을 위한 API 연동</li>
+              <li>카카오 알림 및 반복 메시지 자동화</li>
+              <li>운영 스케줄 작업 구성</li>
+            </ul>
+          </article>
+
+          <article class="card project-card">
+            <h3 class="card-title">커뮤니티 자동 댓글 및 텔레그램 알림</h3>
+            <div class="muted">2025.05 ~</div>
+            <div class="project-meta">
+              <span class="tag">Python</span>
+              <span class="tag">Telegram</span>
+              <span class="tag">OpenAI API</span>
+            </div>
+            <p class="muted">웹 애플리케이션 기반 자동화 작업과 텔레그램 알림 프로그램 개발</p>
+            <ul>
+              <li>커뮤니티 자동 댓글 처리</li>
+              <li>게시글 알림 텔레그램 연동</li>
+              <li>템플릿 선택 기능 개선</li>
+              <li>운영 자동화 기능 적용</li>
+            </ul>
+          </article>
+
+          <article class="card project-card">
+            <h3 class="card-title">인사동 키오스크 개발</h3>
+            <div class="muted">2024.12 ~ 2025.05</div>
+            <div class="project-meta">
+              <span class="tag">Python</span>
+              <span class="tag">Flask</span>
+              <span class="tag">Unity</span>
+              <span class="tag">Oracle</span>
+            </div>
+            <p class="muted">키오스크 Windows Application, API Server, Web Admin을 함께 구축</p>
+            <ul>
+              <li>Unity 기반 윈도우 프로그램 개발</li>
+              <li>상점 DB 정보 구축</li>
+              <li>API 서버 개발</li>
+              <li>웹 관리자 페이지 개발</li>
+            </ul>
+          </article>
+
+          <article class="card project-card">
+            <h3 class="card-title">링커버스 AI 모델링 작업</h3>
+            <div class="muted">2023.12 ~ 2024.12</div>
+            <div class="project-meta">
+              <span class="tag">Python</span>
+              <span class="tag">TensorFlow</span>
+              <span class="tag">PyTorch</span>
+              <span class="tag">Embedded</span>
+            </div>
+            <p class="muted">손톱 탐지/분석 모델링과 API 서버, 앱 및 디바이스 연동 개발 수행</p>
+            <ul>
+              <li>Detection / Classification 모델 작업</li>
+              <li>AI API 서버 구성</li>
+              <li>Android App 수정</li>
+              <li>하드웨어 프로그램 개발</li>
+            </ul>
+          </article>
+
+          <article class="card project-card">
+            <h3 class="card-title">삼성 SDI Vision 검사 프로그램</h3>
+            <div class="muted">2016.03 ~ 2019.03</div>
+            <div class="project-meta">
+              <span class="tag">C++ Builder</span>
+              <span class="tag">Visual Studio</span>
+              <span class="tag">Open eVision</span>
+            </div>
+            <p class="muted">산업용 비전 라이브러리를 활용한 검사 프로그램 개발</p>
+            <ul>
+              <li>비전 검사 윈도우 프로그램 개발</li>
+              <li>레시피 및 검사 화면 구성</li>
+              <li>현장 적용 중심 유지보수 수행</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="timeline" class="section">
+      <div class="wrap">
+        <h2 class="section-title">경력 타임라인</h2>
+        <p class="section-desc">전체 이력은 연도 구간 중심으로 요약했습니다.</p>
+        <div class="timeline">
+          <article class="card timeline-item">
+            <span class="timeline-year">2025 ~ 2026</span>
+            <h3 class="card-title">웹 서비스 · 관리자 시스템 · 자동화</h3>
+            <ul>
+              <li>통신/모바일 소개 페이지 제작</li>
+              <li>통신/모바일 관리 프로그램 제작</li>
+              <li>커뮤니티 자동 댓글 및 텔레그램 알림</li>
+              <li>K-ICT 강동 K-ISS 멘토링 센터 홈페이지 작업</li>
+            </ul>
+          </article>
+
+          <article class="card timeline-item">
+            <span class="timeline-year">2023 ~ 2025</span>
+            <h3 class="card-title">키오스크 · AI 모델링 · 서비스 연동</h3>
+            <ul>
+              <li>인사동 키오스크 개발</li>
+              <li>링커버스 AI 모델링 작업</li>
+            </ul>
+          </article>
+
+          <article class="card timeline-item">
+            <span class="timeline-year">2020 ~ 2023</span>
+            <h3 class="card-title">AI 응용프로그램 · CAD/도면 응용</h3>
+            <ul>
+              <li>AI Solution Application 및 C++ Inference Library 개발</li>
+              <li>Cam 도면 이미지 수정 프로그램 개발 및 유지보수</li>
+            </ul>
+          </article>
+
+          <article class="card timeline-item">
+            <span class="timeline-year">2012 ~ 2019</span>
+            <h3 class="card-title">산업용 비전 · 웹 시스템 · 공공/국방 분야</h3>
+            <ul>
+              <li>삼성 SDI Vision 계열 검사 프로그램</li>
+              <li>쇼핑몰 홈페이지 기능 개발 및 서버 관리</li>
+              <li>SEC 연구소 데이터 관리체계 구축사업</li>
+              <li>군 관련 응용 SW 및 체계 통합 프로젝트</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="wrap">
+        <h2 class="section-title">연락처</h2>
+        <p class="section-desc">공개 페이지에는 꼭 필요한 정보만 노출하는 구성을 권장합니다.</p>
+        <div class="contact-grid">
+          <article class="card contact-card">
+            <h3 class="card-title">Email</h3>
+            <p class="muted">solandboa.dev@gmail.com</p>
+          </article>
+          <article class="card contact-card">
+            <h3 class="card-title">GitHub</h3>
+            <p class="muted">github.com/your-id</p>
+          </article>
+          <article class="card contact-card">
+            <h3 class="card-title">Note</h3>
+            <p class="muted">상세 주소와 전체 휴대전화 번호는 공개 웹페이지에서 제외하는 것을 권장합니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">© 2026 김준호. Portfolio for GitHub Pages.</div>
+  </footer>
+</body>
+</html>
